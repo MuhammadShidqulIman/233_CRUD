@@ -1,7 +1,7 @@
 const express = require('express');
 let mysql = require('mysql2');
 const app = express();
-const port = 3380;
+const port = 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -20,3 +20,11 @@ const db = mysql.createConnection({
   database: 'biodata',
   port : 3307
 });
+
+db.connect((err) => {
+  if (err) {
+    console.error('error connecting to MySQL: ' + err.stack);
+    return;
+  }
+  console.log('connection Succuesfully!');
+})
